@@ -1,10 +1,12 @@
 from stopsign import stopSign
+from car import Car
 
 class Controller:
     def __init__(self, numsigns):
         self.signs = [None] * numsigns
         for i, sign in enumerate(self.signs):
             self.signs[i] = stopSign(numsigns)
+        self.queue = []
 
     def __repr__(self):
         ret = []
@@ -28,12 +30,33 @@ class Controller:
         print("Sign", index+1, "Status:\n", ret)
 
     #updates status of all signs
-    def update_all(self):
+    def update_all_signs(self):
         for i, sign in enumerate(self.signs):
             self.check_others(i)
 
-    def add_car(self, index):
+    def update_car(self, index):
         self.signs[index].switch_car_state()
+
+    #adds car to queue, and updates the correct sign to reflect that a car is present
+    def new_car(self, sign):
+        car = Car(sign)
+        car.setPos(len(self.queue))
+        self.queue.append(car)
+        self.update_car(sign)
+        self.update_all_signs()
+
+    #removes car from queue and advances the remaining cars
+    def remove_car(self):
+        sign = self.queue[0].sign
+        self.queue.pop(0)
+        for i, car in enumerate(self.queue):
+            self.queue[i].advance()
+        self.update_car(sign)
+        self.update_all_signs()
+
+    def check_safety(self, sign):
+        x.signs[sign].check_safety()
+
 
 
 
@@ -44,13 +67,13 @@ print(x)
 
 print("\nPut car at stop sign 3")
 
-x.add_car(2)
+x.new_car(2)
 
 print(x)
+print(x.queue)
 
-print("\nCheck and update signs")
+print("\nCheck safety of sign 2")
+x.check_safety(2)
 
-x.update_all()
-
-print(x)
-
+print("\nCheck safety of sign 3")
+x.check_safety(3)

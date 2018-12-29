@@ -7,6 +7,7 @@ class stopSign():
         for i, sign in enumerate(self.signs):
             self.signs[i] = False
         self.car_present = False
+        self.car = None
 
     def __repr__(self):
         ret = []
@@ -22,4 +23,12 @@ class stopSign():
         for i, sign in enumerate(self.signs):
             if i == side:
                 self.signs[i] = not self.signs[i]
+
+    def check_safety(self):
+        for sign in self.signs:
+            if sign:
+                print("not safe to go")
+                return False
+        print("safe to go")
+        return True
 
