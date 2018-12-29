@@ -7,7 +7,6 @@ class stopSign():
         self.right = False
         self.top = False
         self.left = False
-        self.bot = False
         self.car_present = False
 
     def __repr__(self):
@@ -16,15 +15,14 @@ class stopSign():
     def switch_car_state(self):
         self.car_present = not self.car_present
 
+    #this is bad logic rn i'm working on it rn
     def switch_state(self, side):
-        if(side == 'T'):
-            self.top = not self.top
-        elif(side == 'B'):
-             self.bot = not self.bot
-        elif(side == 'L'):
+        if(side == 0):
+            self.right = not self.right
+        elif(side == 1):
+             self.top = not self.top
+        elif(side == 2):
              self.left = not self.left
-        elif(side == 'R'):
-             self.right = not self.right
         else:
-            print("Invalid argument, please enter side (T, B, L, R)")
+            print("Invalid argument")
 

@@ -9,7 +9,7 @@ class Controller:
     def __repr__(self):
         ret = []
         for i, sign in enumerate(self.signs):
-            ret.append([{"car": sign.car_present}, {"top": sign.top}, {"bot": sign.bot},
+            ret.append([{"car": sign.car_present}, {"top": sign.top},
                         {"left": sign.left}, {"right": sign.right}])
         return "\n".join(str(x) for x in ret)
 
@@ -22,15 +22,36 @@ class Controller:
         for sign in self.signs[:index]:
             ret.append(sign.car_present)
 
-        print(ret)
+        #for each sign that returned true for car_present, update the respective indicator
+        for i, status in enumerate(ret):
+            if status:
+                self.signs[index].switch_state(i)
+        print("Sign", index+1, "Status:\n", ret)
+
+    #updates status of all signs
+    def update_all(self):
+        for i, sign in enumerate(self.signs):
+            self.check_others(i)
+
+    def add_car(self, index):
+        self.signs[index].switch_car_state()
 
 
 
-x = Controller(3)
+x = Controller(4)
 
-x.signs[2].switch_car_state()
+print("Default State:")
+print(x)
+
+print("\nPut car at stop sign 3")
+
+x.add_car(2)
 
 print(x)
 
-print(x.check_others(1))
+print("\nCheck and update sign 4")
+
+x.update_all()
+
+print(x)
 
