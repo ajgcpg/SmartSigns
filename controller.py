@@ -4,13 +4,12 @@ class Controller:
     def __init__(self, numsigns):
         self.signs = [None] * numsigns
         for i, sign in enumerate(self.signs):
-            self.signs[i] = stopSign()
+            self.signs[i] = stopSign(numsigns)
 
     def __repr__(self):
         ret = []
         for i, sign in enumerate(self.signs):
-            ret.append([{"car": sign.car_present}, {"top": sign.top},
-                        {"left": sign.left}, {"right": sign.right}])
+            ret.append([str(sign)])
         return "\n".join(str(x) for x in ret)
 
     #given a sign, checks status of other signs, starting with rightmost sign
