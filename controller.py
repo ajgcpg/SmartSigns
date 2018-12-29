@@ -49,7 +49,7 @@ x.add_car(2)
 
 print(x)
 
-print("\nCheck and update sign 4")
+print("\nCheck and update signs")
 
 x.update_all()
 
