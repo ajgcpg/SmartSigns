@@ -27,7 +27,7 @@ class Controller:
         for i, status in enumerate(ret):
             if status:
                 self.signs[index].switch_state(i)
-        print("Sign", index+1, "Status:\n", ret)
+        #print("Sign", index+1, "Status:\n", ret)
 
     #updates status of all signs
     def update_all_signs(self):
@@ -55,25 +55,4 @@ class Controller:
         self.update_all_signs()
 
     def check_safety(self, sign):
-        x.signs[sign].check_safety()
-
-
-
-
-x = Controller(4)
-
-print("Default State:")
-print(x)
-
-print("\nPut car at stop sign 3")
-
-x.new_car(2)
-
-print(x)
-print(x.queue)
-
-print("\nCheck safety of sign 2")
-x.check_safety(2)
-
-print("\nCheck safety of sign 3")
-x.check_safety(3)
+        self.signs[sign].check_safety()
