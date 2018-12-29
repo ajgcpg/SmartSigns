@@ -16,19 +16,21 @@ class stopSign():
         retstr = "".join(x for x in ret)
         return(f"Car: {self.car_present} | Indicators: {retstr}")
 
-    def switch_car_state(self):
-        self.car_present = not self.car_present
+    #updates to reflect presence of a car at this sign
+    def set_car_state(self, state):
+        self.car_present = state
 
-    def switch_state(self, side):
+    #updates sign's indicators to reflect positions of other cars
+    def set_state(self, side, state):
         for i, sign in enumerate(self.signs):
             if i == side:
-                self.signs[i] = not self.signs[i]
+                self.signs[i] = state
 
+    #check if it is safe for car at this sign to go (WIP)
     def check_safety(self):
-        for sign in self.signs:
-            if sign:
-                print("not safe to go")
-                return False
+        if self.car.pos != 0:
+            print("not safe to go")
+            return False
         print("safe to go")
         return True
 

@@ -19,6 +19,8 @@ x.new_car(0)
 print(x)
 print(x.queue)
 
+print("\nRemove car at front of queue")
+
 x.remove_car()
 
 print(x)

@@ -25,8 +25,7 @@ class Controller:
 
         #for each sign that returned true for car_present, update the respective indicator
         for i, status in enumerate(ret):
-            if status:
-                self.signs[index].switch_state(i)
+                self.signs[index].set_state(i, status)
         #print("Sign", index+1, "Status:\n", ret)
 
     #updates status of all signs
@@ -34,15 +33,15 @@ class Controller:
         for i, sign in enumerate(self.signs):
             self.check_others(i)
 
-    def update_car(self, index):
-        self.signs[index].switch_car_state()
-
     #adds car to queue, and updates the correct sign to reflect that a car is present
     def new_car(self, sign):
+        if(self.signs[sign].car_present):
+            print("Car already at this sign")
+            return
         car = Car(sign)
         car.setPos(len(self.queue))
         self.queue.append(car)
-        self.update_car(sign)
+        self.signs[sign].set_car_state(True)
         self.update_all_signs()
 
     #removes car from queue and advances the remaining cars
@@ -51,8 +50,9 @@ class Controller:
         self.queue.pop(0)
         for i, car in enumerate(self.queue):
             self.queue[i].advance()
-        self.update_car(sign)
+        self.signs[sign].set_car_state(False)
         self.update_all_signs()
 
+    #check if it is safe for car at current sign to go (WIP)
     def check_safety(self, sign):
         self.signs[sign].check_safety()
