@@ -4,9 +4,13 @@ class stopSign():
         self.right = False
         self.top = False
         self.bot = False
+        self.car_present = False
 
     def __repr__(self):
-        return(f"Top: {self.top}\nLeft: {self.left}\nBot: {self.bot}\nRight: {self.right}")
+        return(f"Car: {self.car_present} Top: {self.top}\nLeft: {self.left}\nBot: {self.bot}\nRight: {self.right}")
+
+    def switch_car_state(self):
+        self.car_present = not self.car_present
 
     def switch_state(self, side):
         if(side == 'T'):
