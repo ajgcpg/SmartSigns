@@ -28,6 +28,9 @@ class stopSign():
 
     #check if it is safe for car at this sign to go (WIP)
     def check_safety(self):
+        if not self.car:
+            print("No car at this sign")
+            return False
         if self.car.pos != 0:
             print("not safe to go")
             return False

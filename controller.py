@@ -55,4 +55,4 @@ class Controller:
 
     #check if it is safe for car at current sign to go (WIP)
     def check_safety(self, sign):
-        self.signs[sign].check_safety()
+        return self.signs[sign].check_safety()
