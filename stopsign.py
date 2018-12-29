@@ -1,8 +1,12 @@
+#Each sign has an indicator (right, top, left, bot) which shows drivers
+#the status of each other sign in an intersection. For example, if there is a car at the rightmost sign,
+#the "right" indicator will be set to true.
+
 class stopSign():
     def __init__(self):
-        self.left = False
         self.right = False
         self.top = False
+        self.left = False
         self.bot = False
         self.car_present = False
 

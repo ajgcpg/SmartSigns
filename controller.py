@@ -25,3 +25,12 @@ class Controller:
         print(ret)
 
 
+
+x = Controller(3)
+
+x.signs[2].switch_car_state()
+
+print(x)
+
+print(x.check_others(1))
+
